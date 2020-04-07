@@ -24,6 +24,13 @@ pipeline {
                 echo 'Hello...'
             }
         }
+        stage('build && SonarQube analysis'){
+            steps{
+                withSonarQubeEnv('Sonar'){
+                      bat 'mvn clean package sonar:Sonar'
+                }
+            }
+        }
         
     }
 }
