@@ -27,7 +27,7 @@ pipeline {
         stage('SonarQube analysis'){
             steps{
                 withSonarQubeEnv('SonarQube'){
-                      bat 'mvn sonar:sonar'
+                      bat 'mvn clean package sonar:sonar'
                 }
             }
         }
