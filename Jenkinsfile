@@ -31,6 +31,27 @@ pipeline {
                 }
             }
         }
+        stage('Deploy artifact')
+             {
+                 steps{
+                     rtServer (
+                         id: 'artifactory',
+                         url: 'http://localhost:8081/artifactory',
+                         username: 'admin',
+                         password: 'password'
+                     )
+                     rtUpload (
+                         serverId: 'artifactory',
+                         spec: '''{
+                         "files": [
+                              { "pattern": "/**.war",
+                                "target": "SpringWebmvcForm"
+                              }
+                           ]
+                         }'''
+                     )
+                 }
+             }
         
     }
 }
