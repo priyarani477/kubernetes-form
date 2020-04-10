@@ -7,7 +7,7 @@ tools{
  
    stages {
       stage("jdk config"){
-         step{
+         steps{
                jdk = tool name: 'jdk1.8', type: 'jdk'
                env.JAVA_HOME = "${jdk}"
                echo "jdk installation path is: ${jdk}"
