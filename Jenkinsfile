@@ -16,7 +16,7 @@ tools{
                                      }
               stage('Build Stage') {
                                steps{
-                                        bat 'java --version'
+                                        bat 'java -version'
                                      }
                                     }
               stage('Compile Stage'){
