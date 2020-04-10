@@ -6,14 +6,9 @@ tools{
 
  
    stages {
-      stage("jdk config"){
-         steps{
-               jdk = tool name: 'jdk1.8', type: 'jdk'
-               env.JAVA_HOME = "${jdk}"
-               echo "jdk installation path is: ${jdk}"
-         }
   
-      }
+  
+      
               stage("Code Checkout") {
                                 steps {
                                        git url: 'https://github.com/prakharbh4/jenkins.git'
