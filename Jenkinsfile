@@ -16,7 +16,7 @@ tools{
                                      }
               stage('Build Stage') {
                                steps{
-                                        bat 'mvn package'
+                                        bat 'java --version'
                                      }
                                     }
               stage('Compile Stage'){
