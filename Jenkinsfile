@@ -14,7 +14,7 @@ tools{
                                      }
               stage('Build Stage') {
                                steps{
-                                        bat 'mvn package'
+                                        bat 'tool name: 'maven3.6', type: 'maven''
                                      }
                                     }
               stage('Compile Stage'){
