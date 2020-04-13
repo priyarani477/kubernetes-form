@@ -32,7 +32,7 @@ tools{
                                     }
               stage('build && SonarQube analysis'){
                                 steps {
-                                       withSonarQubeEnv('SonarQube') {
+                                       withSonarQubeEnv('sonar') {
                                                                      bat 'mvn clean package sonar:sonar'
                                                                  } 
                                       } 
