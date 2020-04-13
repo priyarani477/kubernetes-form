@@ -37,6 +37,27 @@ tools{
                                                                  } 
                                       } 
                                     }
+      stage('Deploy to tomcat'){
+                                steps{
+                                       bat "copy target\\SpringWebmvcForm.war \"C:\\Users\\prakharbhatia\\apache-tomcat-9.0.31\\webapps\""
+                                     }
+                                   }
+       stage('Building image') {
+    steps{
+      script {
+       dockerImage= docker.build registry + ":$BUILD_NUMBER"
+      }
+    }
+  }
+  
+  stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
 
               stage('Deploy artifact'){
                                 steps{
@@ -44,11 +65,7 @@ tools{
                                       rtUpload (serverId: 'artifactory',spec: '''{"files": [{ "pattern": "/**.war","target": "SpringWebmvcForm/"}]}''')
                                       }
                                      }
-            stage('Deploy to tomcat'){
-                                steps{
-                                       bat "copy target\\SpringWebmvcForm.war \"C:\\Users\\prakharbhatia\\apache-tomcat-9.0.31\\webapps\""
-                                     }
-                                   }
+            
               
                                  }
 }
