@@ -1,4 +1,7 @@
-pipeline{
+pipeline{ environment {
+    registry = "prakharbhatia4/narendra"
+    registryCredential = 'docker'
+  }  
    agent any
 tools{
      jdk 'jdk1.8'
