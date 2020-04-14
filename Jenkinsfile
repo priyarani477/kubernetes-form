@@ -40,12 +40,13 @@ tools{
                                                                  } 
                                       } 
                                     }
-      
-      stage('Deploy to tomcat'){
+        stage('Deploy artifact'){
                                 steps{
-                                       bat "copy target\\SpringWebmvcForm.war \"C:\\Users\\prakharbhatia\\apache-tomcat-9.0.31\\webapps\""
-                                     }
-                                   }
+                                     bat 'mvn deploy'
+                                      }
+                                     }   
+      
+      
        stage('Building image') {
                                 steps{
                                      script {
@@ -63,11 +64,11 @@ tools{
                                    }
                              }
        }
-           stage('Deploy artifact'){
+          stage('Deploy to tomcat'){
                                 steps{
-                                     bat 'mvn deploy'
-                                      }
-                                     }   
+                                       bat "copy target\\SpringWebmvcForm.war \"C:\\Users\\prakharbhatia\\apache-tomcat-9.0.31\\webapps\""
+                                     }
+                                   }
             
               
   }
