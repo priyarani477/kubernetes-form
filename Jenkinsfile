@@ -64,6 +64,11 @@ tools{
                                    }
                              }
        }
+       stage('Deploy'){
+           steps{
+                 bat 'docker run -p 80:8080 prakharbhatia4/prakhar:$BUILD_NUMBER'
+           }
+       }
           stage('Deploy to tomcat'){
                                 steps{
                                        bat "copy target\\SpringWebmvcForm.war \"C:\\Users\\prakharbhatia\\apache-tomcat-9.0.31\\webapps\""
