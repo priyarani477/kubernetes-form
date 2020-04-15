@@ -65,6 +65,7 @@ tools{
                              }
        }
  
+ 
           stage('Deploy to tomcat'){
                                 steps{
                                        bat "copy target\\SpringWebmvcForm.war \"C:\\Users\\prakharbhatia\\apache-tomcat-9.0.31\\webapps\""
