@@ -66,7 +66,7 @@ tools{
        }
        stage('Deploy'){
            steps{
-                 bat 'docker run -p 80:8080 prakharbhatia4/prakhar:%BUILD_NUMBER%'
+                 bat 'docker run -p 81:8080 prakharbhatia4/prakhar:%BUILD_NUMBER%'
            }
        }
           stage('Deploy to tomcat'){
