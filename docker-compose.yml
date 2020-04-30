@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   httpd:
@@ -11,5 +11,5 @@ services:
     build: ./docker/tomcat
     volumes:
       - ./target/SpringWebmvcForm.war:/usr/local/tomcat/webapps/SpringWebmvcForm.war
-    ports:
-      - "8080"
+    expose:
+      - "8009"
