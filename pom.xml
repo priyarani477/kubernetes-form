@@ -49,6 +49,6 @@
     </snapshotRepository>
 </distributionManagement>
   <build>
-    <finalName>SpringWebmvcForm</finalName>
+    <finalName>form</finalName>
   </build>
 </project>
