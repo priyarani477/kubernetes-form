@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.prakhar</groupId>
-  <artifactId>form</artifactId>
+  <groupId>com.samra</groupId>
+  <artifactId>springmvcform</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>form Maven Webapp</name>
+  <name>springmvcform Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
  <maven.compiler.source>1.8</maven.compiler.source>
@@ -36,19 +36,7 @@
 
   </dependencies>
   
-  <distributionManagement>
-    <repository>
-        <id>central</id>
-        <name>prakharbhatia-releases</name>
-        <url>http://localhost:8081/artifactory/maven_artifact</url>
-    </repository>
-    <snapshotRepository>
-        <id>snapshots</id>
-        <name>prakharbhatia-snapshots</name>
-        <url>http://localhost:8081/artifactory/maven_artifact</url>
-    </snapshotRepository>
-</distributionManagement>
   <build>
-    <finalName>form</finalName>
+    <finalName>springmvcform</finalName>
   </build>
 </project>

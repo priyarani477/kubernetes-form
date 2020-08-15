@@ -1,4 +1,4 @@
-package com.prakhar;
+package com.samra;
 
 public class Employee {
 	public Employee() {
