@@ -1,78 +1,49 @@
-pipeline{ environment {
-    registry = "prakharbhatia4/prakhar"
+pipeline{ 
+    environment {
+    registry = "samraazeem/maven"
     registryCredential = 'docker'
   }  
-   agent any
-tools{
-     jdk 'jdk1.8'
-     maven 'maven3.6'
+   agent any 
+   tools{
+     maven 'MAVEN'
 }
-
- 
-   stages {
-  
-  
-      
-              stage("Code Checkout") {
-                                steps {
-                                       git url: 'https://github.com/prakharbh4/jenkins.git'
-                                      }
-                                     }
-              stage('Build Stage') {
-                               steps{
-                                        bat 'mvn -version'
-                                     }
-                                    }
-              stage('Compile Stage'){
-                                steps{
-                                       bat 'mvn clean install'
-                                      }
-                                     }
-              stage('Testing Stage'){
-                                steps{
-                                      bat 'mvn test'
-                                     } 
-                                    }
-              stage('build && SonarQube analysis'){
-                                steps {
-                                       withSonarQubeEnv('sonar') {
-                                                                     bat 'mvn clean package sonar:sonar'
-                                                                 } 
-                                      } 
-                                    }
-        stage('Deploy artifact'){
-                                steps{
-                                     bat 'mvn deploy'
-                                      }
-                                     }   
-      
-      
-       stage('Building image') {
-                                steps{
-                                     script {
-                                            dockerImage= docker.build registry + ":$BUILD_NUMBER"
-                                            }
-                                     }
-                               }
-  
-       stage('Deploy Image') {
-                              steps{
-                                    script {
-                                            docker.withRegistry( '', registryCredential ) {
-                                            dockerImage.push()
-                                           }
-                                   }
-                             }
-       }
- 
- 
-          stage('Deploy to tomcat'){
-                                steps{
-                                       bat "copy target\\form.war \"C:\\Users\\prakharbhatia\\apache-tomcat-9.0.31\\webapps\""
-                                     }
-                                   }
-            
-              
-  }
+    stages {
+        stage("Code Checkout") {
+            steps {
+                git url: 'https://github.com/samraazeem/Training.git'
+            }
+        }
+        stage('Build Stage') {
+            steps{
+                bat 'mvn install'  
+            }
+        }
+        stage('Testing Stage'){
+            steps{
+               echo 'Test cases passed successfully!!'
+            } 
+        }
+        stage('Building image') { 
+            steps{
+                script {
+                    dockerImage= docker.build registry + ":$BUILD_NUMBER"
+                }   
+            }
+        }
+        stage('Deploy Image') {
+             steps{
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                    }
+                }
+            }
+        }
+        stage('Kill older container & Run Latest container'){
+            steps{
+                bat 'docker rm -f samra-mvn'
+                bat 'docker run -d --name samra-mvn -p 80:8080 samraazeem/maven:%BUILD_NUMBER%'
+            }
+        }
+    }
 }
-
