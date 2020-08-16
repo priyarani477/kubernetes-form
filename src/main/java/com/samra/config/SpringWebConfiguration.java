@@ -8,7 +8,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.ViewResolver;
 
 @Configuration
-@ComponentScan(basePackages="com.prakhar")
+@ComponentScan(basePackages="com.samra")
 @EnableWebMvc
 
 public class SpringWebConfiguration {
